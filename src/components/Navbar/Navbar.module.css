@@ -1,0 +1,26 @@
+.navbar{
+    grid-area: n;
+    background-color: #30D5C8;
+}
+
+ul{
+    list-style-type: none;
+    padding-left: 0;
+}
+
+
+ul > li + li{
+    border-top: 1px solid #808080;
+    margin-top: 5px;
+}
+
+.navbarItem{
+    text-decoration:none;
+    color:#A52A2A;
+    margin-left: 10px;
+    font-size: 20px;
+}
+
+.navbarItem.active{
+    font-weight: bold;
+}

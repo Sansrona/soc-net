@@ -1,0 +1,12 @@
+h2{
+    margin-left: 10px;
+}
+
+*{
+    color:#A52A2A;
+}
+
+.friends{
+    display: flex;
+    justify-content: space-around;
+}git commit -a
