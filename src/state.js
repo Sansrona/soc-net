@@ -1,5 +1,6 @@
+const ADD_POST = 'ADD-POST'
+const UPDATE_INPUT_TEXT = 'UPDATE-INPUT-TEXT'
 export let store = {
-
    _state:{
     dialogPage: {
       dialogData: [{
@@ -69,7 +70,7 @@ export let store = {
   },
 
   dispatch(action){
-    if(action.type ==='ADD-POST'){
+    if(action.type === ADD_POST){
       this._state.postPage.postData.push({
         id: 5,
         post: this._state.postPage.newInputText,
@@ -78,14 +79,26 @@ export let store = {
       this._state.postPage.newInputText = '';
       this._callSubscriber(this._state);
       // updateInputText("");
-    } else if(action.type === 'UPDATE-INPUT-TEXT') {
+    } else if(action.type === UPDATE_INPUT_TEXT ) {
       this._state.postPage.newInputText = action.newText;
       this._callSubscriber(this._state);
     }
   }
-  
 }
 
+export const addPostActionCreactor = () =>{
+  return {
+    type:ADD_POST
+  }
+}
+
+
+export const updateInputTextActionCreator = (text) =>{
+  return {
+    type:UPDATE_INPUT_TEXT,
+    newText:text
+  }
+}
 
 
 window.store = store;

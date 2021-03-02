@@ -1,5 +1,6 @@
 import React from 'react'
 import Post from './Post/Post'
+import {addPostActionCreactor,updateInputTextActionCreator} from '../../../state';
 
 import s from './MyPosts.module.css'
 
@@ -9,11 +10,12 @@ const MyPosts = (props) => {
     let text = React.createRef();
 
     let addNew = () => {
-        props.dispatch({type: 'ADD-POST'})
+        props.dispatch(addPostActionCreactor())
     }
 
     let onChangeInputText = () => {
-        props.dispatch({type: 'UPDATE-INPUT-TEXT',newText:text.current.value});
+        let action = updateInputTextActionCreator(text.current.value);
+        props.dispatch(action);
     }
 
 
