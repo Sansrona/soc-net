@@ -16,19 +16,19 @@ import './App.css';
 function App(props) {
 
   return (
-    <BrowserRouter>
+    <>
     <div className='app-wrapper'>
       <Header />
-      <Navbar dialogData={props.state.dialogData} />
+      <Navbar dialogData={props.state.dialogPage.dialogData} />
       <div className='app-wrapper-content'>
-        <Route path='/profile' render={()=><Profile postData={props.state.postData}/>} />
+        <Route path='/profile' render={()=><Profile postPage={props.state.postPage} addPost={props.addPost} updateInputText={props.updateInputText}/>} />
         <Route path='/news' component={News} />
-      <Route path='/dialogs' render={()=><Dialogs dialogData={props.state.dialogData} messageData={props.state.messageData} />} />
+        <Route path='/dialogs' render={()=><Dialogs dialogData={props.state.dialogPage.dialogData} messageData={props.state.messagePage.messageData} addPost={props.addPost}/>} />
         <Route path='/music' component={Music} />
         <Route path='/settings' component={Settings} />
       </div>
     </div>
-    </BrowserRouter>
+    </>
 
   );
 }
