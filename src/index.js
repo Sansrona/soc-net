@@ -1,23 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import state from "./state";
 import App from './App';
 import {BrowserRouter} from 'react-router-dom'
-import {addPost, updateInputText,subscribe} from './state'
+import store from './state'
 
 
 export let rerenderTree=(state)=>{
 ReactDOM.render(
   <BrowserRouter>
-    <App state={state} addPost={addPost} updateInputText={updateInputText}/>
+    <App state={state} addPost={store.addPost.bind(store)} updateInputText={store.updateInputText.bind(store)}/>
   </BrowserRouter>,
   document.getElementById('root')
 );
 }
-rerenderTree(state);
+rerenderTree(store.getState());
 
-subscribe(rerenderTree)
+store.subscribe(rerenderTree)
 
 
 
