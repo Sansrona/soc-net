@@ -3,9 +3,21 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import state from "./state";
 import App from './App';
-import {rerenderTree} from './render'
+import {BrowserRouter} from 'react-router-dom'
+import {addPost, updateInputText,subscribe} from './state'
 
+
+export let rerenderTree=(state)=>{
+ReactDOM.render(
+  <BrowserRouter>
+    <App state={state} addPost={addPost} updateInputText={updateInputText}/>
+  </BrowserRouter>,
+  document.getElementById('root')
+);
+}
 rerenderTree(state);
+
+subscribe(rerenderTree)
 
 
 

@@ -1,4 +1,6 @@
-import {rerenderTree} from './render';
+let rerenderTree = () =>{
+
+}
 
 let state = {
     dialogPage:{
@@ -27,7 +29,7 @@ let state = {
 window.state = state;
 
 
-export let addPost = () => {
+export const addPost = () => {
   state.postPage.postData.push({
       id:5,
       post:state.postPage.newInputText, 
@@ -38,9 +40,15 @@ export let addPost = () => {
   // updateInputText("");
 }
 
-export let updateInputText = (newText) => {
+export const updateInputText = (newText) => {
   state.postPage.newInputText = newText;
   rerenderTree(state);
 }
+
+export const subscribe = (observer) => {
+  rerenderTree = observer;
+}
+
+
 
 export default state;
