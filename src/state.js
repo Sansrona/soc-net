@@ -59,32 +59,31 @@ export let store = {
       newInputText: 'Hi man'
     }
   },
+  _callSubscriber() {},
 
   getState(){
     return this._state;
   },
-  
-  _callSubscriber() {},
-
-  addPost() {
-    this._state.postPage.postData.push({
-      id: 5,
-      post: this._state.postPage.newInputText,
-      likes: 0
-    })
-    this._state.postPage.newInputText = '';
-    this._callSubscriber(this._state);
-    // updateInputText("");
-  },
-  updateInputText(newText) {
-    this._state.postPage.newInputText = newText;
-    this._callSubscriber(this._state);
-  },
-
   subscribe(observer) {
     this._callSubscriber = observer;
-  }
+  },
 
+  dispatch(action){
+    if(action.type ==='ADD-POST'){
+      this._state.postPage.postData.push({
+        id: 5,
+        post: this._state.postPage.newInputText,
+        likes: 0
+      })
+      this._state.postPage.newInputText = '';
+      this._callSubscriber(this._state);
+      // updateInputText("");
+    } else if(action.type === 'UPDATE-INPUT-TEXT') {
+      this._state.postPage.newInputText = action.newText;
+      this._callSubscriber(this._state);
+    }
+  }
+  
 }
 
 

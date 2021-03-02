@@ -9,12 +9,11 @@ const MyPosts = (props) => {
     let text = React.createRef();
 
     let addNew = () => {
-        props.addPost(text.current.value)
-        
+        props.dispatch({type: 'ADD-POST'})
     }
 
     let onChangeInputText = () => {
-        props.updateInputText(text.current.value);
+        props.dispatch({type: 'UPDATE-INPUT-TEXT',newText:text.current.value});
     }
 
 
