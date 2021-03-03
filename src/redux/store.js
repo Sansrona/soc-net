@@ -1,9 +1,6 @@
-const ADD_POST = 'ADD-POST'
-const UPDATE_INPUT_TEXT = 'UPDATE-INPUT-TEXT'
-
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
-const ADD_MESSAGE = 'ADD-MESSAGE';
-
+import messageReducer from './message-reducer.js';
+import dialogReducer from './dialog-reducer.js';
+import postReducer from './post-reducer.js';
 
 export let store = {
    _state:{
@@ -76,39 +73,18 @@ export let store = {
   },
 
   dispatch(action){
-    if(action.type === ADD_POST){
-      this._state.postPage.postData.push({
-        id: 5,
-        post: this._state.postPage.newInputText,
-        likes: 0
-      })
-      this._state.postPage.newInputText = '';
-      this._callSubscriber(this._state);
-      // updateInputText("");
-    } else if(action.type === UPDATE_INPUT_TEXT ) {
-      this._state.postPage.newInputText = action.newText;
-      this._callSubscriber(this._state);
-    } else if(action.type === ADD_MESSAGE){
-      this._state.messagePage.messageData.push({
-        id:4,
-        message:this._state.messagePage.newMessageText
-      })
-      this._state.messagePage.newMessageText = '';
-      this._callSubscriber(this._state);
-    } else if(action.type === UPDATE_NEW_MESSAGE_TEXT){
-      this._state.messagePage.newMessageText = action.newMessage;
-      this._callSubscriber(this._state);
-    }
+   this._state.messagePage = messageReducer(this._state.messagePage,action);
+   this._state.dailogPage = dialogReducer(this._state.dailogPage,action);
+   this._state.postPage = postReducer(this._state.postPage,action);
+    
+    
+    this._callSubscriber(this._state);
+
   }
 }
 
-export const addPostActionCreactor = () => ({type:ADD_POST})
 
-export const updateInputTextActionCreator = (text) => ({type:UPDATE_INPUT_TEXT,newText:text})
 
-export const updateNewMessageTextActionCreator = (message) => ({type:UPDATE_NEW_MESSAGE_TEXT, newMessage:message});
-
-export const addMessageActionCreator = () => ({type:ADD_MESSAGE});
 
 window.store = store;
 

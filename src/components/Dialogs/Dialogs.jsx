@@ -4,7 +4,7 @@ import s from './Dialogs.module.css';
 import Message from './Message/Message'
 import Dialog from './Dialog/Dialog'
 
-import {addMessageActionCreator,updateNewMessageTextActionCreator} from '../../state'
+import {addMessageActionCreator,updateNewMessageTextActionCreator} from '../../redux/message-reducer.js'
 
 
 
