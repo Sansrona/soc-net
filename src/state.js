@@ -1,5 +1,10 @@
 const ADD_POST = 'ADD-POST'
 const UPDATE_INPUT_TEXT = 'UPDATE-INPUT-TEXT'
+
+const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
+const ADD_MESSAGE = 'ADD-MESSAGE';
+
+
 export let store = {
    _state:{
     dialogPage: {
@@ -10,7 +15,7 @@ export let store = {
         },
         {
           id: 2,
-          name: 'Teacher',
+          name: 'Oogway',
           img: 'https://i.pinimg.com/originals/eb/db/af/ebdbaf14cd4e23717ee93bc2c3f1498b.jpg'
         },
         {
@@ -43,7 +48,8 @@ export let store = {
           id: 3,
           message: 'Where is my money?'
         },
-      ]
+      ],
+      newMessageText: ''
     },
     postPage: {
       postData: [{
@@ -57,7 +63,7 @@ export let store = {
           likes: 14
         }
       ],
-      newInputText: 'Hi man'
+      newInputText: ''
     }
   },
   _callSubscriber() {},
@@ -82,24 +88,27 @@ export let store = {
     } else if(action.type === UPDATE_INPUT_TEXT ) {
       this._state.postPage.newInputText = action.newText;
       this._callSubscriber(this._state);
+    } else if(action.type === ADD_MESSAGE){
+      this._state.messagePage.messageData.push({
+        id:4,
+        message:this._state.messagePage.newMessageText
+      })
+      this._state.messagePage.newMessageText = '';
+      this._callSubscriber(this._state);
+    } else if(action.type === UPDATE_NEW_MESSAGE_TEXT){
+      this._state.messagePage.newMessageText = action.newMessage;
+      this._callSubscriber(this._state);
     }
   }
 }
 
-export const addPostActionCreactor = () =>{
-  return {
-    type:ADD_POST
-  }
-}
+export const addPostActionCreactor = () => ({type:ADD_POST})
 
+export const updateInputTextActionCreator = (text) => ({type:UPDATE_INPUT_TEXT,newText:text})
 
-export const updateInputTextActionCreator = (text) =>{
-  return {
-    type:UPDATE_INPUT_TEXT,
-    newText:text
-  }
-}
+export const updateNewMessageTextActionCreator = (message) => ({type:UPDATE_NEW_MESSAGE_TEXT, newMessage:message});
 
+export const addMessageActionCreator = () => ({type:ADD_MESSAGE});
 
 window.store = store;
 

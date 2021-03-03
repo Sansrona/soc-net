@@ -4,14 +4,21 @@ import s from './Dialogs.module.css';
 import Message from './Message/Message'
 import Dialog from './Dialog/Dialog'
 
+import {addMessageActionCreator,updateNewMessageTextActionCreator} from '../../state'
+
 
 
 
 const Dialogs = (props) => {
 
-    let msg = React.createRef();
-    let send =()=>{
-        alert(msg.current.value);
+    let msg = React.createRef(); //message created inside textarea
+
+    let changeMsg = () => {
+        props.dispatch(updateNewMessageTextActionCreator(msg.current.value))
+    }
+
+    let addMsg = () => {
+        props.dispatch(addMessageActionCreator())
     }
 
     return (
@@ -20,9 +27,9 @@ const Dialogs = (props) => {
                 <Dialog dialogData={props.dialogData}/>
             </div>
             <div className={s.messages}>
-                <Message messageData={props.messageData}/>
-                <textarea ref={msg}></textarea>
-                <button onClick={send}>Send</button>
+                <Message messageData={props.messagePage.messageData}/>
+                <textarea value={props.messagePage.newMessageText} ref={msg} onChange={changeMsg}></textarea>
+                <button onClick={addMsg}>Send</button>
             </div>
         </div>
     )
