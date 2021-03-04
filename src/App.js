@@ -19,7 +19,7 @@ function App(props) {
     <>
     <div className='app-wrapper'>
       <Header />
-      <Navbar dialogData={props.state.dialogPage.dialogData} />
+      <Navbar dialogData={props.state.dialogPage.dialogData} /> 
       <div className='app-wrapper-content'>
         <Route path='/profile' render={()=><Profile postPage={props.state.postPage} dispatch={props.dispatch} />} />
         <Route path='/news' component={News} />

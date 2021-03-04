@@ -1,8 +1,22 @@
 const ADD_POST = 'ADD-POST'
 const UPDATE_INPUT_TEXT = 'UPDATE-INPUT-TEXT'
 
+let initialState = {
+      postData: [{
+          id: 1,
+          post: 'Hi there, how are you?',
+          likes: 15
+        },
+        {
+          id: 2,
+          post: 'My first message',
+          likes: 14
+        }
+      ],
+      newInputText: ''
+    }
 
-const postReducer = (state, action) => {
+const postReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POST:
             state.postData.push({
