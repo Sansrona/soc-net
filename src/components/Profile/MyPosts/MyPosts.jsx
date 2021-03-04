@@ -7,15 +7,17 @@ import s from './MyPosts.module.css'
 
 
 const MyPosts = (props) => {
+
+    let postPage = props.postPage;
+
     let text = React.createRef();
 
-    let addNew = () => {
-        props.dispatch(addPostActionCreactor())
+    let onAddNew = () => {
+        props.addNew()
     }
 
     let onChangeInputText = () => {
-        let action = updateInputTextActionCreator(text.current.value);
-        props.dispatch(action);
+        props.onChangeInputText(text.current.value);
     }
 
 
@@ -24,12 +26,12 @@ const MyPosts = (props) => {
             <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea onChange={onChangeInputText} ref={text} value={props.newInputText}></textarea>
+                    <textarea onChange={onChangeInputText} ref={text} value={postPage.newInputText}></textarea>
                 </div>
-                <div><button onClick={addNew}>Add post</button></div>
+                <div><button onClick={onAddNew}>Add post</button></div>
             </div>
             <div className={s.posts}>
-                {props.postData.map(item => <Post postData={item} />)}
+                {postPage.postData.map(item => <Post postData={item} />)}
             </div>
         </div>
     )

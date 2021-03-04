@@ -4,32 +4,35 @@ import s from './Dialogs.module.css';
 import Message from './Message/Message'
 import Dialog from './Dialog/Dialog'
 
-import {addMessageActionCreator,updateNewMessageTextActionCreator} from '../../redux/message-reducer.js'
 
 
 
 
 const Dialogs = (props) => {
 
+    let dialogPage = props.dialogPage;
+
+    let messagePage = props.messagePage;
+
     let msg = React.createRef(); //message created inside textarea
 
-    let changeMsg = () => {
-        props.dispatch(updateNewMessageTextActionCreator(msg.current.value))
+    let onChangeMsg = () => {
+        props.changeMsg(msg.current.value);
     }
 
-    let addMsg = () => {
-        props.dispatch(addMessageActionCreator())
+    let onAddMsg = () => {
+        props.addMsg();
     }
 
     return (
         <div className={s.container}>
             <div className={s.dialogs}>
-                <Dialog dialogData={props.dialogData}/>
+                <Dialog dialogData={dialogPage}/>
             </div>
             <div className={s.messages}>
-                <Message messageData={props.messagePage.messageData}/>
-                <textarea value={props.messagePage.newMessageText} ref={msg} onChange={changeMsg}></textarea>
-                <button onClick={addMsg}>Send</button>
+                <Message messageData={messagePage.messageData}/>
+                <textarea value={messagePage.newMessageText} ref={msg} onChange={onChangeMsg}></textarea>
+                <button onClick={onAddMsg}>Send</button>
             </div>
         </div>
     )
