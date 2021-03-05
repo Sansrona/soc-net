@@ -10,6 +10,7 @@ import Dialog from './Dialog/Dialog'
 
 const Dialogs = (props) => {
 
+
     let dialogPage = props.dialogPage;
 
     let messagePage = props.messagePage;
@@ -27,7 +28,7 @@ const Dialogs = (props) => {
     return (
         <div className={s.container}>
             <div className={s.dialogs}>
-                <Dialog dialogData={dialogPage}/>
+                <Dialog dialogData={dialogPage.dialogData}/>
             </div>
             <div className={s.messages}>
                 <Message messageData={messagePage.messageData}/>

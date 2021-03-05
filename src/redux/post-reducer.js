@@ -18,17 +18,22 @@ let initialState = {
 
 const postReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_POST:
-            state.postData.push({
+        case ADD_POST:{
+            let stateCopy = {...state};
+            stateCopy.postData = [...state.postData];
+            stateCopy.postData.push({
                 id: 5,
-                post: state.newInputText,
+                post: stateCopy.newInputText,
                 likes: 0
             })
-            state.newInputText = '';
-            return state;
-        case UPDATE_INPUT_TEXT:
-            state.newInputText = action.newText;
-            return state;
+            stateCopy.newInputText = '';
+            return stateCopy;
+        }
+        case UPDATE_INPUT_TEXT:{
+            let stateCopy = {...state};
+            stateCopy.newInputText = action.newText;
+            return stateCopy;
+        }
         default: return state;
     }
     
