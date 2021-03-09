@@ -1,0 +1,54 @@
+.userImg{
+    width: 50px;
+    height: 50px;
+    border-radius:50%;
+    margin-bottom: 5px;
+}
+
+.usersContainer{
+    margin-top: 50px;
+    margin-left:30px ;
+}
+.intro{
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+}
+.profile{
+    border: 1px solid #808080;
+    display: flex;
+    justify-content: space-between;
+    margin-right: 20em;
+    padding: 5px;
+}
+
+.usersFlexContainer{
+  display: grid;
+  grid-template-columns : 2fr 10fr;
+  margin-bottom: 10px;
+}
+
+.userProfile{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.userLocation{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.username{
+    font-weight: bold;
+}
+
+.add_more_btn{
+    padding:15px ;
+    border-radius:10px;
+    margin-left: 300px;
+
+}
