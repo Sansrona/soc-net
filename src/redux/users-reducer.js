@@ -3,39 +3,7 @@ const UNFOLLOW = 'UNFOLLOW';
 const ADD_MORE = 'ADD-MORE';
 
 let initialState = {
-    users: [{
-            id: 1,
-            followed: true,
-            photoUser: 'https://present5.com/customparser/425479586_452894552%20---%20days_of_the_week_ppt_raznocvetnyy_parakpen.ppt/slide_8.jpg',
-            fullName: 'Monday Tuesday',
-            description: 'Follow me',
-            location: {
-                city: 'San Francisco',
-                country: 'USA'
-            }
-        },
-        {
-            id: 2,
-            followed: false,
-            photoUser: 'https://present5.com/customparser/425479586_452894552%20---%20days_of_the_week_ppt_raznocvetnyy_parakpen.ppt/slide_8.jpg',
-            fullName: 'Wednesday Thursday',
-            description: 'Not Follow me',
-            location: {
-                city: 'Beijing',
-                country: 'China'
-            }
-        },
-        {
-            id: 3,
-            followed: false,
-            photoUser: 'https://present5.com/customparser/425479586_452894552%20---%20days_of_the_week_ppt_raznocvetnyy_parakpen.ppt/slide_8.jpg',
-            fullName: 'Friday Saturday Sunday',
-            description: 'You can"t see me',
-            location: {
-                city: 'London',
-                country: 'GB'
-            }
-        },
+    users: [
     ]
 }
 
