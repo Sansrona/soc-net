@@ -52,3 +52,7 @@
     margin-left: 300px;
 
 }
+
+.selectedPage{
+    font-weight: bold;
+}
