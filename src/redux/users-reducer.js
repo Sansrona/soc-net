@@ -4,6 +4,8 @@ const ADD_MORE = 'ADD-MORE';
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
 const CURRENT_PAGE = 'CURRENT_PAGE';
 
+
+
 let initialState = {
     users: [
     ],

@@ -7,7 +7,7 @@ const Friends = (props) =>{
         <div >
             <h2>Friends</h2>
             <div className={s.friends}>
-                {props.dialogData.filter(item=>item.id<4).map(friend=><div className={s.friend}><img src={friend.img} alt="Icon" />{friend.name}</div>)}
+                {props.dialogData.filter(item=>item.id<4).map(friend=><div key={friend.id} className={s.friend}><img src={friend.img} alt="Icon" />{friend.name}</div>)}
             </div>
         </div>
     )

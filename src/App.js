@@ -20,11 +20,11 @@ function App() {
       <Navbar /> 
       <div className='app-wrapper-content'>
         <Route path='/profile' render={()=><Profile  />} />
-        <Route path='/news' component={News} />
+        <Route path='/news' render={()=><News />} />
         <Route path='/dialogs' render={()=><DialogsContainer />} />
-        <Route path='/music' component={Music} />
+        <Route path='/music' render={()=><Music />} />
         <Route path='/users' render={()=><UsersContainer />} />
-        <Route path='/settings' component={Settings} />
+        <Route path='/settings' render={()=><Settings />} />
       </div>
     </div>
     </>
