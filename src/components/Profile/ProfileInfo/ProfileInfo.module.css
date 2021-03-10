@@ -5,3 +5,27 @@
 .prof_img{
     width: 400px;
 }
+
+
+.profile{
+    display: flex;
+}
+
+.profileInfo{
+    margin-left: 50px;
+}
+
+table{
+        border: 1px solid grey;
+}
+
+td {
+    border: 1px solid grey;
+ }
+
+tr td:first-child{
+    font-weight: bold;
+} 
+caption{
+    font-weight: bold;
+}

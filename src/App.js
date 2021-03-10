@@ -1,5 +1,5 @@
 import React from 'react'
-import Profile from './components/Profile/Profile'
+import ProfileContainer from './components/Profile/ProfileContainer'
 import Header from './components/Header/Header'
 import Navbar from './components/Navbar/Navbar'
 import DialogsContainer from './components/Dialogs/DialogsContainer';
@@ -19,7 +19,7 @@ function App() {
       <Header />
       <Navbar /> 
       <div className='app-wrapper-content'>
-        <Route path='/profile' render={()=><Profile  />} />
+        <Route path='/profile' render={()=><ProfileContainer  />} />
         <Route path='/news' render={()=><News />} />
         <Route path='/dialogs' render={()=><DialogsContainer />} />
         <Route path='/music' render={()=><Music />} />

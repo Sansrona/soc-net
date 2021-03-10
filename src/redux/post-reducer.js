@@ -1,5 +1,6 @@
 const ADD_POST = 'ADD-POST'
 const UPDATE_INPUT_TEXT = 'UPDATE-INPUT-TEXT'
+const SET_USER_PROFILE = 'SET_USER_PROFILE'
 
 let initialState = {
       postData: [{
@@ -13,10 +14,12 @@ let initialState = {
           likes: 14
         }
       ],
-      newInputText: ''
+      newInputText: '',
+      profile: null
     }
 
 const postReducer = (state = initialState, action) => {
+    
     switch (action.type) {
         case ADD_POST:{
             let stateCopy = {...state};
@@ -34,6 +37,9 @@ const postReducer = (state = initialState, action) => {
             stateCopy.newInputText = action.newText;
             return stateCopy;
         }
+        case SET_USER_PROFILE:{
+            return {...state, profile: action.profile}
+        }
         default: return state;
     }
     
@@ -42,5 +48,7 @@ const postReducer = (state = initialState, action) => {
 export const addPostActionCreactor = () => ({type:ADD_POST})
 
 export const updateInputTextActionCreator = (text) => ({type:UPDATE_INPUT_TEXT,newText:text})
+
+export const setUserProfile = (profile) => ({type:SET_USER_PROFILE,profile})
 
 export default postReducer;
