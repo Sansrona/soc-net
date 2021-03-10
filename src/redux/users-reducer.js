@@ -3,6 +3,7 @@ const UNFOLLOW = 'UNFOLLOW';
 const ADD_MORE = 'ADD-MORE';
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
 const CURRENT_PAGE = 'CURRENT_PAGE';
+const TOGGLE_IS_FETCHED = 'TOGGLE_IS_FETCHED'
 
 
 
@@ -11,7 +12,8 @@ let initialState = {
     ],
     totalUsersCount: 0,
     usersPerPage:5,
-    currentPage:1
+    currentPage:1,
+    isFetched: false
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -45,25 +47,30 @@ const usersReducer = (state = initialState, action) => {
         case CURRENT_PAGE:{
             return {...state,currentPage: action.currentPage}
         }
+        case TOGGLE_IS_FETCHED:{
+            return {...state,isFetched: action.isFetched}
+        }
         default:
             return state;
     }
 }
 
-export const followAC = (userID) => ({
+export const follow = (userID) => ({
     type: FOLLOW,
     userID
 })
-export const unfollowAC = (userID) => ({
+export const unfollow = (userID) => ({
     type: UNFOLLOW,
     userID
 });
-export const addMoreAC = (users) => ({
+export const addMore = (users) => ({
     type: ADD_MORE,
     users
 });
 
-export const setTotalUsersCountAC = (usersCount) =>({type:SET_TOTAL_USERS_COUNT, usersCount})
-export const setCurrentPageAC = (currentPage) => ({type:CURRENT_PAGE, currentPage })
+export const setTotalUsersCount = (usersCount) =>({type:SET_TOTAL_USERS_COUNT, usersCount})
+export const setCurrentPage = (currentPage) => ({type:CURRENT_PAGE, currentPage })
+export const toggleIsFetched = (isFetched) => ({type:TOGGLE_IS_FETCHED, isFetched })
+
 
 export default usersReducer;
