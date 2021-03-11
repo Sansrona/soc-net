@@ -6,12 +6,14 @@ import messageReducer from './message-reducer.js';
 import dialogReducer from './dialog-reducer.js';
 import postReducer from './post-reducer.js';
 import usersReducer from './users-reducer.js'
+import authReducer from './auth-reducer.js'
 
 let reducers = combineReducers({
     messagePage:messageReducer,
     postPage: postReducer,
     dialogPage: dialogReducer,
-    usersPage: usersReducer
+    usersPage: usersReducer,
+    auth: authReducer
 });
 
 let store = createStore(reducers);
