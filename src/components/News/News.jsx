@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState,useEffect} from 'react';
 
 
 
@@ -26,10 +26,26 @@ class AutoFocus extends React.Component {
     }
 }
 
+const Counter = ()=>{
+    let [count, setCount] = useState(0);
+
+    useEffect(()=>{
+        document.title = `You are ${count} times cool`
+    })
+
+    return  <div>
+            <p>Counter is {count}</p>
+            <button onClick={()=>setCount(count+1)}>Click me</button>
+        </div>
+    
+}
+
 
 const News = (props) =>{
-    return(
+    return(< >
         <AutoFocus />
+        <Counter />
+        </>
     )
 }
 export default News;

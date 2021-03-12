@@ -2,7 +2,6 @@ import React from 'react'
 import { NavLink } from "react-router-dom";
 import s from './Users.module.css'
 import userIMG from '../../assets/image/user-omg.png';
-import * as axios from "axios";
 import usersAPI from '../../dal/usersAPI';
 
 
@@ -14,25 +13,30 @@ let Users = (props) => {
     for (let i = 1; i <= pagination; i++) { pageCounts.push(i) }
 
     return <div className={s.usersContainer}>
-        {pageCounts.map(page => { return <span key={page} onClick={(e) => { props.onPageChanged(page) }} className={props.currentPage === page ? s.selectedPage : ''}>{page}</span> })}
+        {pageCounts.map(page => { return <span key={page} onClick={() => { props.onPageChanged(page)}} className={props.currentPage === page ? s.selectedPage : ''}>{page}</span> })}
         {props.users.map((user) =>
             <div key={user.id} className={s.usersFlexContainer}>
                 <div className={s.intro}>
                     <NavLink to={'/profile/' + user.id}>
                         <img className={s.userImg} src={user.photos.small ? user.photos.small : userIMG} alt="user avatar" />
                     </NavLink>
-                    {user.followed ? <button onClick={() => {
+                    {user.followed ? <button disabled={props.isFollowing.some(id=>id ===user.id)} onClick={() => {
+                        props.toggleIsFollowing(true,user.id);
                         usersAPI.deleteFollowerAPI(user.id).then(data => {
                             if(data.resultCode == 0){
                             props.unfollow(user.id);
                             }
+                            props.toggleIsFollowing(false,user.id);
                         })
-                    }}>Unfollow</button> : <button onClick={() => {
+                    }}>Unfollow</button> : <button disabled={props.isFollowing.some(id=>id ===user.id)} onClick={() => {
+                        props.toggleIsFollowing(true,user.id);
                         usersAPI.postFollowerAPI(user.id).then(data => {
                             if(data.resultCode == 0){
                             props.follow(user.id);
                             }
+                            props.toggleIsFollowing(false,user.id);
                         })
+                        
                     }}>Follow</button>}
                 </div>
                 <div className={s.profile}>
