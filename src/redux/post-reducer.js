@@ -1,6 +1,9 @@
+import usersAPI from '../dal/usersAPI';
+
 const ADD_POST = 'ADD-POST'
 const UPDATE_INPUT_TEXT = 'UPDATE-INPUT-TEXT'
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
+
 
 let initialState = {
       postData: [{
@@ -50,5 +53,14 @@ export const addPostActionCreactor = () => ({type:ADD_POST})
 export const updateInputTextActionCreator = (text) => ({type:UPDATE_INPUT_TEXT,newText:text})
 
 export const setUserProfile = (profile) => ({type:SET_USER_PROFILE,profile})
+
+       
+export const getUserProfile = (userId)=>{
+    return dispatch => {
+        usersAPI.getProfileApi(userId).then(data => {
+            dispatch(setUserProfile(data));
+        })
+    }
+}
 
 export default postReducer;

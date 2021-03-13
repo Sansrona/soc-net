@@ -22,6 +22,9 @@ const instance = axios.create({
     },
     postFollowerAPI(userId){
         return instance.post(`follow/${userId}`).then(response => response.data)
+    },
+    getAuthMe(){
+        return instance.get(`auth/me`).then(response => response.data);
     }
 
 

@@ -1,29 +1,28 @@
 import React from 'react'
 import Users from './Users'
 import { connect } from 'react-redux'
-import { follow, unfollow, addMore, setTotalUsersCount, setCurrentPage, toggleIsFetched, toggleIsFollowing } from '../../redux/users-reducer';
+import {getUsers,setFollowing,setUnfollowing} from '../../redux/users-reducer';
 import Preloader from '../common/Preloader/Preloader'
-import usersAPI from '../../dal/usersAPI';
+
 
 
 class UsersAPIContainer extends React.Component {
 
     componentDidMount() {
-        this.props.toggleIsFetched(true);
-        usersAPI.getUsersAPI(this.props.currentPage,this.props.usersPerPage).then(data => {
-            this.props.toggleIsFetched(false);
-            this.props.addMore(data.items);
-            this.props.setTotalUsersCount(30)
-        })
+        this.props.getUsers(this.props.currentPage,this.props.usersPerPage);
+       
+    }
+    onFollow = (userId)=>{
+        this.props.setFollowing(userId);
+    }
+
+    onUnfollow = (userId)=>{
+        this.props.setUnfollowing(userId);
     }
 
     onPageChanged = (pageNumber) => {
-        this.props.setCurrentPage(pageNumber);
-        this.props.toggleIsFetched(true);
-        usersAPI.getUsersAPI(pageNumber,this.props.usersPerPage).then(data => {
-            this.props.toggleIsFetched(false);
-            this.props.addMore(data.items);
-        })
+        this.props.getUsers(pageNumber,this.props.usersPerPage)
+    
     }
     render() {
         return <>
@@ -31,12 +30,11 @@ class UsersAPIContainer extends React.Component {
             <Users totalUsersCount={this.props.totalUsersCount}
                 usersPerPage={this.props.usersPerPage}
                 onPageChanged={this.onPageChanged}
-                unfollow={this.props.unfollow}
-                follow={this.props.follow}
                 currentPage={this.props.currentPage}
                 users={this.props.users}
                 isFollowing={this.props.isFollowing}
-                toggleIsFollowing={this.props.toggleIsFollowing}
+                onFollow={this.onFollow}
+                onUnfollow={this.onUnfollow}
             />
         </>
     }
@@ -56,7 +54,7 @@ const mapStateToProps = (state) => {
 
 
 
-const UsersContainer = connect(mapStateToProps, {follow, unfollow, addMore, setTotalUsersCount, setCurrentPage, toggleIsFetched, toggleIsFollowing})
+const UsersContainer = connect(mapStateToProps, {getUsers,setFollowing,setUnfollowing})
 (UsersAPIContainer);
 
 
