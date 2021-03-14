@@ -22,15 +22,17 @@ const instance = axios.create({
     },
     postFollowerAPI(userId){
         return instance.post(`follow/${userId}`).then(response => response.data)
-    },
+    }
+}
+
+export const authAPI = {
     getAuthMe(){
         return instance.get(`auth/me`).then(response => response.data);
     }
-
-
-}
+    }
 
 export default usersAPI;
+ 
 
 
 

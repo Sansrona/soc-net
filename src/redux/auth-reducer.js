@@ -1,4 +1,4 @@
-import usersAPI from '../dal/usersAPI';
+import {authAPI} from '../dal/usersAPI';
 
 const SET_AUTH_USER = 'SET_AUTH_USER';
 
@@ -25,7 +25,7 @@ export const setAuthUser = (login, userId, email) => ({type: SET_AUTH_USER,data:
 
 export const getAuthUser = () =>{
     return dispatch => {
-        usersAPI.getAuthMe().then(response=>{
+        authAPI.getAuthMe().then(response=>{
             let {login, id, email} = response.data;
             dispatch(setAuthUser(login,id,email));
         })
