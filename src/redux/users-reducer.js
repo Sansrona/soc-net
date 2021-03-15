@@ -1,4 +1,4 @@
-import usersAPI from '../dal/usersAPI';
+import {usersAPI} from '../dal/usersAPI';
 
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW';

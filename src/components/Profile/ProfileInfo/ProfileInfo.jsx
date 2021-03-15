@@ -11,7 +11,7 @@ const ProfileInfo = (props) => {
         let arr= [];
         for (let link in props.profile.contacts){
             if(props.profile.contacts[link]){
-                arr.push(<p>{link} : {props.profile.contacts[link]}</p>);
+                arr.push(<p key={props.profile.contacts[link]}>{link} : {props.profile.contacts[link]}</p>);
                 
             }
         }
@@ -19,15 +19,16 @@ const ProfileInfo = (props) => {
     }
 
     return (<>
-
         <div className={s.descriptionBlock}>
             <img className={s.prof_img} src="https://3.bp.blogspot.com/-kKDAa7h-PXM/V_HXNu7g1fI/AAAAAAAAC6Y/vBHLJJtlXm0_z1h-ESVX75Qi6D_Nt_YpQCLcB/s1600/beautiful-waterfalls-hd-wallpaper-free-for-desktop.jpg" alt="ava image" />
             <div className={s.profile}>
                 <img src={props.profile.photos.large ? props.profile.photos.large : userIMG } alt="" />
-                <ProfileStatus status='Hello world'/>
+                <ProfileStatus status={props.status} updateUserStatus={props.updateUserStatus}/>
                 <div className={s.profileInfo}>
                 <table>
                     <caption>Samurai Profile</caption>
+                    <thead><tr></tr></thead>
+                    <tbody>
                     <tr>
                         <td>Name</td>
                         <td>{props.profile.fullName}</td>
@@ -44,6 +45,7 @@ const ProfileInfo = (props) => {
                         <td>Contacts</td>
                         {getContacts()}
                     </tr>
+                    </tbody>
                 </table>
                 </div>
             </div>
